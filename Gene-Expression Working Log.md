@@ -11,11 +11,32 @@ Ideal Procedure
 ***
 * Stage 1: Pilot Analysis, Standard Procedure
 * Stage 2: Bias & Contaminatioon Control
+*** extra tips:
+The code is only use as a working record and reference. The files name and location may not be consistant since the analysis were conducted in two different sever at different times.
 
 
+## Searching Sequence Homologs (7/12)
+Use HMMER package to build sequence databases and search for sequence homologs.
 
+### Build hmmdatabase
+```
+## align sequences before use
+clustalo -i KAI2_31genomespecies.faa -o aligned_KAI2_31genomespecies.sto --outfmt=st --threads=10
 
+hmmbuild hmmbuild KAI2_31genome.hmm aligned_KAI2_31genomespecies.sto
+```
 
+### Transdecoder identifies candidate coding regions within transcript sequences
+```
+## TransDecoder.Predict needs to run after TransDecoder.LongOrfs; plus the output_dir need to be the same in order to let ".Predit" use ".LongOrfs"
+
+TransDecoder.LongOrfs -t trinity/trinity_out_dir2/Trinity.fasta 
+```
+
+### hmmsearch for the homologs
+```
+hmmsearch ~/KAI2/KAI2_31genome.hmm longest_orfs_BOGR.pep > faa_BOGR.out
+```
 
 ## Gene Ontology Enrichment (7/10 - 7/11)
 ### Extra GO assignment per gene
