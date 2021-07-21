@@ -11,8 +11,11 @@ Ideal Procedure
 ***
 * Stage 1: Pilot Analysis, Standard Procedure
 * Stage 2: Bias & Contaminatioon Control
-*** extra tips:
+*** 
+extra tips:
 The code is only use as a working record and reference. The files name and location may not be consistant since the analysis were conducted in two different sever at different times.
+
+[TOC]
 
 
 ## Searching Sequence Homologs (7/12)
@@ -75,7 +78,8 @@ perl fasta_seq_length.pl  /lustre/scratch/yannchen/NovaSeq_2021/BOGR/trinity/tri
 python TPM_weighted_gene_length-2.py \
          --gene_trans_map ../trinity/trinity_postR_BOGR.Trinity.fasta.gene_trans_map \
          --trans_lengths Trinity.fasta.seq_lens \
-         --TPM_matrix ../GeneExpression/TMM.isoform.TMM.EXPR.matrix > Trinity.gene_lengths.txt
+         --TPM_matrix ../GeneExpression/
+         .isoform.TMM.EXPR.matrix > Trinity.gene_lengths.txt
          
 ## the orginal perl script in the container include the header line ("shebang") as #!/usr/local/bin perl, which is not creat for the signularity environment.
 ## download the orginal run_GOseq.pl, modified the header line ("shebang") to #!$HOME/conda/bin perl
@@ -290,12 +294,6 @@ singularity exec -H /scratch/yannchen -e ~/trinityrnaseq.v2.12.0.simg sh -c \
 --quant_files quant_files.list \
 --gene_trans_map /scratch/yannchen/Transcriptome/NovaSeq_2021/trinity/fixedtry2.fasta'
 ```
-
-
-
-
-
-
 
 
 ## Assembly Evaluation (NovoSeq)
